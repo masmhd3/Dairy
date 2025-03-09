@@ -11,7 +11,7 @@ btnNav.addEventListener('click',function(){
         setTimeout(() => list.style.transform = 'translateX(0)', 50);
     }else if(list.style.display == 'block'){
         list.style.display = 'none'
-        setTimeout(() => list.style.transform = 'translateX(-5000px)', 50);
+        setTimeout(() => list.style.transform = 'translateX(-100%)', 50);
     }
     if(list.style.display == 'none' || list.style.display === ''){
         btnNav.classList.remove('fa-x')
@@ -83,10 +83,9 @@ btnAddFant.onclick = function(){
     window.scrollTo({ top: document.body.scrollHeight / 2 , behavior: 'smooth' });
     btnNav.click()
     inpAlertNewFont.focus()
-
 }
 btnCancelNewFont.onclick = function(){
-    setTimeout(() => alertNewFont.style.transform = 'translateX(-5000px)', 50);
+    setTimeout(() => alertNewFont.style.transform = 'translateX(-100%)', 50);
     alertNewFont.style.display = 'none';
     dairyBtnNav.classList.toggle('fa-x')
 }
@@ -128,7 +127,7 @@ let btnHomePage = document.getElementById('list-home-page')
 btnHomePage.onclick = function(){
     if(dairy.style.display != 'none' || dairy.style.display != ''){
         dairy.style.display = 'none'
-        setTimeout(() => dairy.style.transform = 'translateX(5000px)', 50);
+        setTimeout(() => dairy.style.transform = 'translateX(-100%)', 50);
         dairyBtnNav.click()
     }
 }

@@ -84,7 +84,7 @@ nav i:hover{
     position: absolute;
     top: 0;
     left: 0;   
-    transform: translateX(-5000px); 
+    transform: translateX(-100%); 
     display: none;
     padding: 10px 0;
 }
@@ -269,7 +269,7 @@ main .main-box p span{
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: translateX(-5000px);
+    transform: translateX(-100%);
     display: none;
     padding: 20px;
 }
@@ -308,12 +308,12 @@ main .main-box p span{
 /* dairy */
 .alert-dairy{
     background-color: #111;
-    transform: translateX(5000px);
+    transform: translateX(-100%);
     z-index: 96;
     display: flex;
     flex-direction: column;
     display: none;
-
+    overflow: hidden;
 }
 .alert-dairy-box{
     max-width: 1024px;
