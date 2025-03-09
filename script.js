@@ -101,11 +101,13 @@ btnAddNewFont.onclick = function(){
 // Dairy
 let dairy = document.getElementById('dairy');
 let boxDairy = document.getElementById('main-box-dairy');
+let main = document.getElementById('main')
 
 boxDairy.onclick = function(){
     if(dairy.style.display == 'none' || dairy.style.display == ''){
         dairy.style.display = 'flex'
         setTimeout(() => dairy.style.transform = 'translateX(0)', 50);
+        main.style.display = 'none'
     }
     if(btnNav.classList.contains('fa-x')){
         dairyBtnNav.classList.add('fa-x')
@@ -129,6 +131,7 @@ btnHomePage.onclick = function(){
         dairy.style.display = 'none'
         setTimeout(() => dairy.style.transform = 'translateX(-100%)', 50);
         dairyBtnNav.click()
+        main.style.display = 'grid'
     }
 }
 

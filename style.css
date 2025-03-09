@@ -261,7 +261,7 @@ main .main-box p span{
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     z-index: 99;
 }
 /* alert add font */
@@ -357,7 +357,8 @@ main .main-box p span{
 .alert-dairy-box .container-dairy .alert-dairy-list-days{
     margin: 20px 0 5px 0;
     flex-grow: 1;
-
+    height: 30px;
+    overflow-y: scroll;
 }
 .alert-dairy-box .container-dairy .alert-dairy-list-days a{
     display: block;
