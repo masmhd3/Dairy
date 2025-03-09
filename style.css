@@ -13,7 +13,6 @@ body{
     background-color: #111;
     position: relative;
     min-height: 100vh;
-
 }
 
 /* similar elements */
@@ -358,7 +357,7 @@ main .main-box p span{
     margin: 20px 0 5px 0;
     flex-grow: 1;
     height: 30px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .alert-dairy-box .container-dairy .alert-dairy-list-days a{
     display: block;
@@ -377,9 +376,57 @@ main .main-box p span{
 
 
 
-
-
-
+/* write dairy */
+.alert-write-dairy{
+    background-color: #111;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-100%);
+}
+.container-write-dairy{
+    flex-grow: 1;
+}
+.container-write-dairy .container{
+    max-width: 1024px;
+    margin: auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+}
+.container-write-dairy .container #title-dairy{
+    display: block;
+    width: 100%;
+    background-color: #000;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    letter-spacing: .5px;
+    border-radius: 8px;
+}
+.container-write-dairy .container textarea{
+    display: block;
+    width: 100%;
+    flex-grow: 1;
+    background-color: #000;
+    resize: none; 
+    border-radius: 8px;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+}
+.container-write-dairy .container button{
+    display: block;
+    width: 80%;
+    margin:0 auto;
+    background-color: #2b2b2b;
+    border-radius: 8px;
+}
+.container-write-dairy .container button:hover{
+    background-color: #444;
+    cursor: pointer;
+}
 
 /* @media */
 @media screen and (max-width:1000px){

@@ -4,6 +4,7 @@ let navNav = document.getElementById('nav-nav')
 let btn = document.getElementById('nav')
 let list = document.getElementById('list');//list
 
+
 btnNav.addEventListener('click',function(){
     // list
     if (list.style.display == 'none' || list.style.display === ''){
@@ -109,42 +110,63 @@ boxDairy.onclick = function(){
         setTimeout(() => dairy.style.transform = 'translateX(0)', 50);
         main.style.display = 'none'
     }
-    if(btnNav.classList.contains('fa-x')){
-        dairyBtnNav.classList.add('fa-x')
-    }else{
-        dairyBtnNav.classList.remove('fa-x')
+    ArrbtnsNavDairy.forEach((ele) =>{
+        if(btnNav.classList.contains('fa-x')){
+            ele.classList.add('fa-x')
+        }else{
+            ele.classList.remove('fa-x')
+        }
+    })
+}
+
+///
+let daysScroll = document.querySelectorAll('.alert-dairy-list-days a')
+let ArrbtnsNavDairy = document.querySelectorAll('#dairy-btn-nav')//btns
+console.log(ArrbtnsNavDairy)
+ArrbtnsNavDairy.forEach((ele) => {
+    ele.onclick = () =>{
+        btnNav.click()
+        if(btnNav.classList.contains('fa-x')){
+            ele.classList.add('fa-x')
+        }else{
+            ele.classList.remove('fa-x')
+        }
+    }
+})
+
+//
+let btnAddDay = document.getElementById('btnAddDay')
+let alertWriteDairy = document.getElementById('alert-write-dairy')
+btnAddDay.onclick = function(){
+    if(dairy.style.display != 'none' || dairy.style.display != ''){
+        dairy.style.display = 'none'
+        setTimeout(() => dairy.style.transform = 'translateX(-100%)', 50);
+    }
+    if(alertWriteDairy.style.display == 'none' || alertWriteDairy.style.display == ''){
+        alertWriteDairy.style.display = 'flex'
+        setTimeout(() => alertWriteDairy.style.transform = 'translateX(0)', 50);
     }
 }
-dairyBtnNav.onclick = () =>{
-    btnNav.click()
-    if(btnNav.classList.contains('fa-x')){
-        dairyBtnNav.classList.add('fa-x')
-    }else{
-        dairyBtnNav.classList.remove('fa-x')
-    }
-}
+
+
+
+
+
+
 
 // go to home page
 let btnHomePage = document.getElementById('list-home-page')
 btnHomePage.onclick = function(){
-    if(dairy.style.display != 'none' || dairy.style.display != ''){
-        dairy.style.display = 'none'
+    if(dairy.style.display != 'none' && dairy.style.display != ''){
         setTimeout(() => dairy.style.transform = 'translateX(-100%)', 50);
+        dairy.style.display = 'none'
+        dairyBtnNav.click()
+        main.style.display = 'grid'
+    }
+    else if(alertWriteDairy.style.display != 'none' && alertWriteDairy.style.display != ''){
+        setTimeout(() => alertWriteDairy.style.transform = 'translateX(-100%)', 50);
+        alertWriteDairy.style.display = 'none'
         dairyBtnNav.click()
         main.style.display = 'grid'
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
