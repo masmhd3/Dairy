@@ -5,7 +5,6 @@ let btn = document.getElementById('nav')
 let list = document.getElementById('list');//list
 
 btnNav.addEventListener('click',function(){
-    btnNav.classList.toggle('fa-x')
     // list
     if (list.style.display == 'none' || list.style.display === ''){
         list.style.display = 'block'
@@ -13,6 +12,11 @@ btnNav.addEventListener('click',function(){
     }else if(list.style.display == 'block'){
         list.style.display = 'none'
         setTimeout(() => list.style.transform = 'translateX(-5000px)', 50);
+    }
+    if(list.style.display == 'none' || list.style.display === ''){
+        btnNav.classList.remove('fa-x')
+    }else{
+        btnNav.classList.add('fa-x')
     }
 }) 
 
@@ -51,4 +55,94 @@ btnFonts.onclick = function(){
         ulFonts.style.display = 'none';
     }
 }
+
+// fonts
+localStorage.font ;
+if (localStorage.font != null){
+    document.body.style.fontFamily = localStorage.font 
+}else{
+    localStorage.font;
+}
+function validFont(liFont){
+    let validFont = liFont.innerHTML
+    localStorage.font = validFont
+    document.body.style.fontFamily = localStorage.font
+
+}
+// add font not valid
+let alertNewFont = document.getElementById('alert-new-font');
+let inpAlertNewFont = document.getElementById('alert-new-font-inp');
+let btnCancelNewFont = document.getElementById('alert-new-font-btns-cancel');
+let btnAddNewFont = document.getElementById('alert-new-font-btns-add');
+let btnAddFant = document.getElementById('list-btn-addFant');
+let dairyBtnNav = document.getElementById('dairy-btn-nav');//
+
+btnAddFant.onclick = function(){
+    alertNewFont.style.display = 'flex';
+    setTimeout(() => alertNewFont.style.transform = 'translateX(0)', 50);
+    window.scrollTo({ top: document.body.scrollHeight / 2 , behavior: 'smooth' });
+    btnNav.click()
+    inpAlertNewFont.focus()
+
+}
+btnCancelNewFont.onclick = function(){
+    setTimeout(() => alertNewFont.style.transform = 'translateX(-5000px)', 50);
+    alertNewFont.style.display = 'none';
+    dairyBtnNav.classList.toggle('fa-x')
+}
+btnAddNewFont.onclick = function(){
+    let newFont = inpAlertNewFont.value.trim()
+    localStorage.font = newFont
+    document.body.style.fontFamily = localStorage.font
+    btnCancelNewFont.click()
+}
+
+
+
+// Dairy
+let dairy = document.getElementById('dairy');
+let boxDairy = document.getElementById('main-box-dairy');
+
+boxDairy.onclick = function(){
+    if(dairy.style.display == 'none' || dairy.style.display == ''){
+        dairy.style.display = 'flex'
+        setTimeout(() => dairy.style.transform = 'translateX(0)', 50);
+    }
+    if(btnNav.classList.contains('fa-x')){
+        dairyBtnNav.classList.add('fa-x')
+    }else{
+        dairyBtnNav.classList.remove('fa-x')
+    }
+}
+dairyBtnNav.onclick = () =>{
+    btnNav.click()
+    if(btnNav.classList.contains('fa-x')){
+        dairyBtnNav.classList.add('fa-x')
+    }else{
+        dairyBtnNav.classList.remove('fa-x')
+    }
+}
+
+// go to home page
+let btnHomePage = document.getElementById('list-home-page')
+btnHomePage.onclick = function(){
+    if(dairy.style.display != 'none' || dairy.style.display != ''){
+        dairy.style.display = 'none'
+        setTimeout(() => dairy.style.transform = 'translateX(5000px)', 50);
+        dairyBtnNav.click()
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 

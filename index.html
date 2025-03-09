@@ -29,7 +29,7 @@
             <h2 class="list-user-name">user name</h2>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, consequuntur?</p>
         </li>
-        <li><a class="list-home-page" href="#">Home page</a></li>
+        <li><a id="list-home-page" class="list-home-page" href="#">Home page</a></li>
         <li class="list-mood">
             <p id="btn-mood" class="btn-mood">mood <i id="btn-mood-icon" class="fa-solid fa-angle-left"></i></p>
             <ul id="ul-moods">
@@ -40,14 +40,98 @@
         <li class="list-fonts">
             <p id="btn-fonts" class="list-btn-fonts">fonts <i id="btn-icon-fonts" class="fa-solid fa-angle-left"></i></p>
             <ul id="ul-fonts">
-                <li>Courier</li>
-                <li>Georgia</li>
-                <li>sans-serif</li>
-                <li><i class="fa-solid fa-plus"></i> add font</li>
+                <li onclick="validFont(this)">Courier</li>
+                <li onclick="validFont(this)">Georgia</li>
+                <li onclick="validFont(this)">sans-serif</li>
+                <li id="list-btn-addFant"><i class="fa-solid fa-plus"></i> add font</li>
             </ul>
         </li>
         <li class="list-default">make all settings default</li>
      </ul>
+
+
+    <main class="main" id="main">
+        <!-- dairy -->
+        <a id="main-box-dairy" class="main-box main-box-dairy" href="#dairy">
+            <i class="fa-solid fa-book"></i>
+            <div class="main-box-dairy-content">
+                <h2>dairy</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates animi officiis sint iusto et veniam hic libero nisi ut labore? <span>see</span></p>
+            </div>
+        </a>
+        <!-- people -->
+        <a class="main-box main-box-poeple" href="#">
+            <i class="fa-solid fa-users"></i>
+            <div class="main-box-poeple-content">
+                <h2>people</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates animi officiis sint iusto et veniam hic libero nisi ut labore? <span>see</span></p>
+            </div>
+        </a>
+        <a class="main-box main-box-star" href="#">
+            <i class="fa-solid fa-star"></i>
+            <div class="main-box-star-content">
+                <h2>achievements</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates animi officiis sint iusto et veniam hic libero nisi ut labore? <span>see</span></p>
+            </div>
+        </a>
+        <a class="main-box main-box-profile" href="#">
+            <i class="fa-solid fa-user"></i>
+            <div class="main-box-profile-content">
+                <h2>profile</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates animi officiis sint iusto et veniam hic libero nisi ut labore? <span>see</span></p>
+            </div>
+        </a>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!------------------------------------- alerts && pages ----------------------->
+    
+     <!-- alert to write new font -->
+    <div id="alert-new-font" class="alert alert-new-font">
+        <div class="alert-new-font-container">
+            <p>Enter tha name of the font, but if the name is wrong , the website will use default font</p>
+            <input id="alert-new-font-inp" type="text" id="alert-new-font-inp" placeholder="enter the font name...">
+            <div class="alert-new-font-btns">
+                <button id="alert-new-font-btns-cancel">cancel</button>
+                <button id="alert-new-font-btns-add">add</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- dairy page -->
+    <div id="dairy" class="alert alert-dairy">
+        <div class="nav" id="nav-nav">
+            <nav id="nav">
+                <div class="logo"><img src="img/llogo.png" alt="logo"></div>
+                <i id="dairy-btn-nav" class="fa-solid fa-bars"></i>
+            </nav>
+        </div>
+        <!--  -->
+        <div id="alert-dairy-box" class="alert-dairy-box">
+            <div class="container-dairy">
+                <a id="btnAddDay" href="#"><i class="fa-solid fa-plus"></i> add day</a>
+                <div class="alert-dairy-list-days">
+                    <a href="#"><h3>day one</h3></a>
+                    <a href="#"><h3>day one</h3></a>
+                    <a href="#"><h3>day one</h3></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 
