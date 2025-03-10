@@ -336,6 +336,7 @@ main .main-box p span{
     flex-direction: column;
     border-radius: 10px;
     overflow: hidden;
+    overflow-y: auto;
 }
 .alert-dairy-box .container-dairy #btnAddDay{
     display: block;
@@ -357,7 +358,11 @@ main .main-box p span{
     margin: 20px 0 5px 0;
     flex-grow: 1;
     height: 30px;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+
+
 }
 .alert-dairy-box .container-dairy .alert-dairy-list-days a{
     display: block;
@@ -405,6 +410,11 @@ main .main-box p span{
     letter-spacing: .5px;
     border-radius: 8px;
 }
+.container-write-dairy span{
+    color: red;
+    font-size: 14px;
+    display: none;
+}
 .container-write-dairy .container textarea{
     display: block;
     width: 100%;
@@ -413,15 +423,16 @@ main .main-box p span{
     resize: none; 
     border-radius: 8px;
     outline: none;
-    padding: 10px;
+    padding: 20px;
     font-size: 16px;
 }
 .container-write-dairy .container button{
     display: block;
-    width: 80%;
+    margin: 0 0;
     margin:0 auto;
     background-color: #2b2b2b;
     border-radius: 8px;
+    width: 98%;
 }
 .container-write-dairy .container button:hover{
     background-color: #444;

@@ -124,8 +124,7 @@
             <div class="container-dairy">
                 <a id="btnAddDay" href="#"><i class="fa-solid fa-plus"></i> add day</a>
                 <div class="alert-dairy-list-days">
-                    <a href="#"><h3>day one</h3></a>
-                    <a href="#"><h3>day one</h3></a>
+                    <a href="#"><h3 id="day-title-h3">day one</h3></a>
                 </div>
             </div>
         </div>
@@ -141,7 +140,10 @@
         </div>
         <div class="container-write-dairy">
             <div class="container">
-                <input type="text" id="title-dairy" placeholder="title">
+                <div>
+                    <input type="text" id="title-dairy" placeholder="title">
+                    <span id="span-input-dairy">write the title, and what happened with you today</span>
+                </div>
                 <textarea id="textarea" placeholder="write..."></textarea>
                 <button id="btn-save-dairy">save</button>
             </div>

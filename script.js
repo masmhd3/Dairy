@@ -134,7 +134,7 @@ ArrbtnsNavDairy.forEach((ele) => {
     }
 })
 
-//
+//btn add day
 let btnAddDay = document.getElementById('btnAddDay')
 let alertWriteDairy = document.getElementById('alert-write-dairy')
 btnAddDay.onclick = function(){
@@ -149,7 +149,62 @@ btnAddDay.onclick = function(){
 }
 
 
+////////////////////////////////////////////
+// create data of dairys
+localStorage.dataDairy;
+let arrDataDays;
+if(localStorage.dataDairy != null){
+    arrDataDays = JSON.parse(localStorage.dataDairy)
+}else{
+    arrDataDays = []
+}
+let addDaySave = document.getElementById('btn-save-dairy');
+let titleDairy = document.getElementById('title-dairy');
+let textDairy = document.getElementById('textarea');
+let spanInputDairy = document.getElementById('span-input-dairy');
 
+addDaySave.onclick = function() {
+    if(titleDairy.value != '' && textDairy.value != ''){
+        //create object has the data
+        let dataDayOBJ = {
+            title:titleDairy.value.trim(),
+            text:textDairy.value.trim(),
+        }
+        //save data in localStorage
+        arrDataDays.push(dataDayOBJ)
+        localStorage.dataDairy = JSON.stringify(arrDataDays)
+
+        // clear inputs
+        titleDairy.value = ''
+        textDairy.value = ''
+
+        //
+        if(dairy.style.display == 'none' || dairy.style.display == ''){
+            dairy.style.display = 'flex'
+            setTimeout(() => dairy.style.transform = 'translateX(0)', 50);
+        }
+        if(alertWriteDairy.style.display != 'none' || alertWriteDairy.style.display != ''){
+            alertWriteDairy.style.display = 'none'
+            setTimeout(() => alertWriteDairy.style.transform = 'translateX(-100%)', 50);
+        }
+        showDayDairy()
+        spanInputDairy.style.display = 'none'
+    }else{
+        titleDairy.focus()
+        spanInputDairy.style.display = 'inline'
+    }
+    
+}
+
+//function show data
+let containerDays = document.querySelector('.alert-dairy-list-days')
+function showDayDairy(){
+    containerDays.innerHTML = '';
+    for(let i = 0; i < arrDataDays.length; i++){
+        containerDays.innerHTML +=`<a href="#"><h3 id="day-title-h3">${arrDataDays[i].title}</h3></a>`
+    }
+}
+showDayDairy()
 
 
 
