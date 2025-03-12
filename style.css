@@ -387,6 +387,7 @@ main .main-box p span{
     display: flex;
     flex-direction: column;
     transform: translateX(-100%);
+    z-index: 96;
 }
 .container-write-dairy{
     flex-grow: 1;
@@ -437,7 +438,83 @@ main .main-box p span{
 .container-write-dairy .container button:hover{
     background-color: #444;
     cursor: pointer;
+    letter-spacing: 1px;
 }
+
+/* alert see dairy */
+.alert-read-dairy{
+    background-color: #111;
+    display: flex;
+    flex-direction: column;
+    transform: translate(-100%);
+    display: none;
+}
+.alert-read-dairy .pcon{
+    flex-grow: 1;
+    width: 100%;
+}
+.alert-read-dairy .read-dairy-container{
+    padding: 30px 20px;
+    max-width: 1024px;
+    margin: auto;
+    position: relative;
+}
+.read-dairy-container h2{
+    text-align: center;
+    font-size: 35px;
+    padding: 10px 0;
+    opacity: .8;
+    font-style: italic;
+}
+.read-dairy-container p{
+    color: rgb(148, 148, 148);
+    letter-spacing: 1px;
+    line-height: 1.5;
+    word-spacing: 2px;
+    max-width: 95%;
+    margin: auto;
+}
+#show-list-read{
+    position: absolute;
+    top: 20px ;
+    right: 40px;
+    font-size: 28px;
+    padding: 5px;
+}
+#show-list-read:hover,.read-dairy-container .read-list i:hover{
+    opacity: .8;
+    cursor: pointer;
+}
+.read-dairy-container .read-list{
+    background-color: #444;
+    width: 300px;
+    position: absolute;
+    top: 20px ;
+    right: 40px;
+    padding: 5px;
+    opacity: 0;
+    display: none;
+}
+.read-dairy-container .read-list button{
+    background-color: #222;
+    margin: 2px 0;
+    width: 100%;
+    font-size: 17px;
+    letter-spacing: 1px;
+}
+.read-dairy-container .read-list button:hover{
+    cursor: pointer;
+    background-color: #111;
+    letter-spacing: 3px;
+}
+.read-dairy-container .read-list i{
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+
 
 /* @media */
 @media screen and (max-width:1000px){
@@ -453,6 +530,12 @@ main .main-box p span{
 @media screen and (max-width:500px){
     main .main-box i{
         font-size: 100px;
+    }
+    .alert-read-dairy .read-dairy-container{
+        padding: 30px 25px ;
+    }
+    .alert-read-dairy .read-dairy-container h2{
+        font-size: 28px;
     }
 }
 @media screen and (max-width:480px){

@@ -187,12 +187,19 @@ addDaySave.onclick = function() {
             alertWriteDairy.style.display = 'none'
             setTimeout(() => alertWriteDairy.style.transform = 'translateX(-100%)', 50);
         }
+
         showDayDairy()
+        fu()
         spanInputDairy.style.display = 'none'
+        //reload web
+        window.location.reload();
+        
     }else{
         titleDairy.focus()
         spanInputDairy.style.display = 'inline'
     }
+
+    // 
     
 }
 
@@ -201,10 +208,115 @@ let containerDays = document.querySelector('.alert-dairy-list-days')
 function showDayDairy(){
     containerDays.innerHTML = '';
     for(let i = 0; i < arrDataDays.length; i++){
-        containerDays.innerHTML +=`<a href="#"><h3 id="day-title-h3">${arrDataDays[i].title}</h3></a>`
+        containerDays.innerHTML +=
+        `<a numm="${i}" href="#" id="day-of-dairy"><h3 id="day-title-h3">${arrDataDays[i].title}</h3></a>`
     }
+    //
+
 }
 showDayDairy()
+
+// alert read dairy
+let daysOfDairy = document.querySelectorAll('#day-of-dairy')
+let alertReadDairy = document.querySelector('.alert-read-dairy')
+let alertReadDairyTitle = document.querySelector('.alert-read-dairy h2')
+let alertReadDairyText = document.querySelector('.alert-read-dairy p')
+let dday;
+function fu(){
+    daysOfDairy.forEach((day) =>{
+        day.onclick = function(){
+            dday = day
+            if(alertReadDairy.style.display == 'none' || alertReadDairy.style.display == ''){
+                alertReadDairy.style.display = 'flex'
+                setTimeout(() => alertReadDairy.style.transform = 'translateX(0)', 50);
+                dairy.style.display = 'none'
+                dairy.style.transform =  'translateX(-100%)'
+                main.style.display = 'none'
+
+                // alertReadDairyTitle.innerHTML = arrDataDays[IarrDataDays].title
+                alertReadDairyTitle.innerHTML = arrDataDays[day.getAttribute('numm')].title
+                alertReadDairyText.innerHTML = arrDataDays[day.getAttribute('numm')].text
+            }
+        }
+    })
+}
+fu()
+
+// list in
+let btnOpenListRead = document.getElementById('show-list-read');
+let readList = document.querySelector('.read-list');
+let btnCloseListRead = document.getElementById('btn-close-list')
+
+btnOpenListRead.onclick = function(){
+    if(readList.style.display == 'none' || readList.style.display == ''){
+        readList.style.display = 'block';
+        setTimeout(() => readList.style.opacity = '1' ,50)
+    }
+}
+btnCloseListRead.onclick = function(){
+    if(readList.style.display != 'none' || readList.style.display != ''){
+        setTimeout(() => readList.style.opacity = '0' ,50)
+        readList.style.display = 'none';
+    }
+}
+
+//btns
+let btnLevReadD = document.querySelector('.read-list .btn-leave-rd')
+btnLevReadD.onclick = function(){
+    btnCloseListRead.click()
+    if(alertReadDairy.style.display != 'none' || alertReadDairy.style.display != ''){
+        alertReadDairy.style.display = 'none'
+        setTimeout(() => alertReadDairy.style.transform = 'translateX(-100%)', 50);
+        dairy.style.display = 'flex'
+        setTimeout(() =>  dairy.style.transform =  'translateX(0)', 50);
+    }
+}
+
+let btnDelReadD = document.querySelector('.read-list .btn-del-rd');
+btnDelReadD.onclick = function(){
+    arrDataDays.splice(dday.getAttribute('numm'),1)
+    localStorage.dataDairy = JSON.stringify(arrDataDays)
+
+    if(alertReadDairy.style.display != 'none' || alertReadDairy.style.display != ''){
+        alertReadDairy.style.display = 'none'
+        setTimeout(() => alertReadDairy.style.transform = 'translateX(-100%)', 50);
+        dairy.style.display = 'flex'
+        setTimeout(() =>  dairy.style.transform =  'translateX(0)', 50);
+    }
+    showDayDairy()
+    fu()
+    location.reload()
+}
+//
+let btnupdateReadD = document.querySelector('.read-list .btn-updata-rd');
+btnupdateReadD.onclick = function(){
+    btnAddDay.click()
+    btnLevReadD.click()
+    addDaySave.innerHTML = 'update'
+    if(addDaySave.innerHTML == 'update'){
+        titleDairy.value = arrDataDays[dday.getAttribute('numm')].title
+        textDairy.value = arrDataDays[dday.getAttribute('numm')].text
+        addDaySave.onclick = function(){
+            arrDataDays[dday.getAttribute('numm')].title = titleDairy.value
+            arrDataDays[dday.getAttribute('numm')].text = textDairy.value
+            localStorage.dataDairy = JSON.stringify(arrDataDays)
+
+            if(dairy.style.display == 'none' || dairy.style.display == ''){
+                dairy.style.display = 'flex'
+                setTimeout(() => dairy.style.transform = 'translateX(0)', 50);
+            }
+            if(alertWriteDairy.style.display != 'none' || alertWriteDairy.style.display != ''){
+                alertWriteDairy.style.display = 'none'
+                setTimeout(() => alertWriteDairy.style.transform = 'translateX(-100%)', 50);
+            }
+            titleDairy.value = ''
+            textDairy.value = ''
+            location.reload()
+        }
+    }
+
+}
+
 
 
 
@@ -212,16 +324,34 @@ showDayDairy()
 // go to home page
 let btnHomePage = document.getElementById('list-home-page')
 btnHomePage.onclick = function(){
+    //dairy page
     if(dairy.style.display != 'none' && dairy.style.display != ''){
         setTimeout(() => dairy.style.transform = 'translateX(-100%)', 50);
         dairy.style.display = 'none'
         dairyBtnNav.click()
         main.style.display = 'grid'
     }
+    // write dairy page
     else if(alertWriteDairy.style.display != 'none' && alertWriteDairy.style.display != ''){
         setTimeout(() => alertWriteDairy.style.transform = 'translateX(-100%)', 50);
         alertWriteDairy.style.display = 'none'
         dairyBtnNav.click()
         main.style.display = 'grid'
+    }
+    //
+    else if(alertReadDairy.style.display != 'none' && alertReadDairy.style.display != ''){
+        setTimeout(() => alertReadDairy.style.transform = 'translateX(-100%)', 50);
+        alertReadDairy.style.display = 'none'
+        dairyBtnNav.click()
+        main.style.display = 'grid'
+    }
+
+
+
+
+
+    // condition
+    if(alertWriteDairy.style.display == 'none' || alertWriteDairy.style.display == ''){
+        spanInputDairy.style.display = 'none'
     }
 }
