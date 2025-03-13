@@ -88,7 +88,13 @@ btnAddFant.onclick = function(){
 btnCancelNewFont.onclick = function(){
     setTimeout(() => alertNewFont.style.transform = 'translateX(-100%)', 50);
     alertNewFont.style.display = 'none';
-    dairyBtnNav.classList.toggle('fa-x')
+    // dairyBtnNav.classList.toggle('fa-x')
+    if(list.style.display == 'none' || list.style.display === ''){
+        btnNav.classList.remove('fa-x')
+    }else{
+        btnNav.classList.add('fa-x')
+    }
+    
 }
 btnAddNewFont.onclick = function(){
     let newFont = inpAlertNewFont.value.trim()
@@ -122,7 +128,6 @@ boxDairy.onclick = function(){
 ///
 let daysScroll = document.querySelectorAll('.alert-dairy-list-days a')
 let ArrbtnsNavDairy = document.querySelectorAll('#dairy-btn-nav')//btns
-console.log(ArrbtnsNavDairy)
 ArrbtnsNavDairy.forEach((ele) => {
     ele.onclick = () =>{
         btnNav.click()
@@ -202,7 +207,6 @@ addDaySave.onclick = function() {
     // 
     
 }
-
 //function show data
 let containerDays = document.querySelector('.alert-dairy-list-days')
 function showDayDairy(){
@@ -321,6 +325,38 @@ btnupdateReadD.onclick = function(){
 
 
 
+// go to people page
+let btnPeoplePage = document.querySelector('.main-box-poeple')
+let alertPeople = document.querySelector('.alert-people')
+btnPeoplePage.onclick = function(){
+    if(alertPeople.style.display == 'none' || alertPeople.style.display == ''){
+        alertPeople.style.display = 'block'
+        setTimeout(() => alertPeople.style.transform = 'translateX(0)', 50);
+        main.style.display = 'none'
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // go to home page
 let btnHomePage = document.getElementById('list-home-page')
 btnHomePage.onclick = function(){
@@ -342,6 +378,12 @@ btnHomePage.onclick = function(){
     else if(alertReadDairy.style.display != 'none' && alertReadDairy.style.display != ''){
         setTimeout(() => alertReadDairy.style.transform = 'translateX(-100%)', 50);
         alertReadDairy.style.display = 'none'
+        dairyBtnNav.click()
+        main.style.display = 'grid'
+    }
+    else if(alertPeople.style.display != 'none' && alertPeople.style.display != ''){
+        setTimeout(() => alertPeople.style.transform = 'translateX(-100%)', 50);
+        alertPeople.style.display = 'none'
         dairyBtnNav.click()
         main.style.display = 'grid'
     }
