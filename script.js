@@ -336,17 +336,17 @@ btnPeoplePage.onclick = function(){
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
+// go to add people page///
+const btnAddPeople = document.getElementById('add-people');
+const alertInfpPeople = document.querySelector('.info-people');
+btnAddPeople.onclick = function(){
+    if(alertInfpPeople.style.display == 'none' || alertInfpPeople.style.display == ''){
+        alertInfpPeople.style.display = 'block'
+        setTimeout(() => alertInfpPeople.style.transform = 'translateX(0)', 50);
+        alertPeople.style.display = 'none'
+        alertPeople.style.transform = 'translateX(-100%)'
+    }
+}
 
 
 
@@ -387,6 +387,12 @@ btnHomePage.onclick = function(){
         dairyBtnNav.click()
         main.style.display = 'grid'
     }
+    else if(alertInfpPeople.style.display != 'none' && alertInfpPeople.style.display != ''){
+        setTimeout(() => alertInfpPeople.style.transform = 'translateX(-100%)', 50);
+        alertInfpPeople.style.display = 'none'
+        dairyBtnNav.click()
+        main.style.display = 'grid'
+    }
 
 
 
@@ -397,3 +403,32 @@ btnHomePage.onclick = function(){
         spanInputDairy.style.display = 'none'
     }
 }
+
+
+
+
+
+
+
+
+
+
+/*let imageInput = document.getElementById('filee')
+let preview = document.getElementById('iimmg')
+
+imageInput.onchange = function(){
+    const file = imageInput.files[0]
+    console.log(file)
+    if(file){
+        const reader = new FileReader()
+        reader.onload = function(event){
+            const base64Image = event.target.result
+            console.log(base64Image)
+            localStorage.setItem('imgPersons', base64Image);
+            preview.src = base64Image;
+        }
+        reader.readAsDataURL(file);
+    }
+}
+
+    */ 

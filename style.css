@@ -528,6 +528,7 @@ main .main-box p span{
     margin: auto;
     padding: 10px 20px;
     min-height: 100vh;
+    padding-bottom: 30px;
 }
 .alert-people .container-people h2{
     color: #9c9c9c;
@@ -592,6 +593,126 @@ main .main-box p span{
     background-color: #333;
     cursor: pointer;
 }
+
+
+
+/* information about  people */
+
+.info-people{
+    background-color: #111;
+    z-index: 96;
+    transform: translateX(-100%);
+    display: none;
+}
+.cont-info-people{
+    max-width: 1024px;
+    margin:10px auto;
+    padding: 20px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    gap: 10px;
+    min-height: 85vh; 
+    
+}
+.cont-info-people div{
+    width: 90%;
+    margin:auto;
+    margin-bottom: 15px;
+
+}
+.cont-info-people div span{
+    display: none;
+}
+.cont-info-people div .inp-info-p{
+    background-color: #000;
+    width: 100%;
+    font-size: 16px;
+    padding: 10px ;
+    border-radius: 3px;
+}
+
+.cont-info-people .textarea-info-p{
+    display: block;
+    background-color: #000;
+    width: 90%;
+    padding: 10px ;
+    border-radius: 3px;
+    font-size: 16px;
+    outline: none;
+    resize: none;
+    flex-grow:1 ;
+}
+
+.cont-info-people div .info-image,.cont-info-people .text-info-span{
+    display: none;
+}
+
+.cont-info-people div [for="info-image"]{
+    border: 2px solid #333;
+    padding: 15px 20px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 1px;
+
+}
+.cont-info-people div [for="info-image"] i{
+    padding: 5px;
+    font-size: 20px;
+}
+.btn-save-info-p i{
+    font-size: 20px;
+}
+.cont-info-people div [for="info-image"]:hover,.btn-save-info-p:hover{
+    background-color: #333;
+    letter-spacing: 1.5px;
+}
+.cont-info-people div [for="info-image"]:active,.btn-save-info-p:active{
+    scale: .9;
+}
+.btns-info-p{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.btn-save-info-p{
+    background-color: #111;
+    border: 2px solid #333;
+    padding: 15px 20px;
+    display: block;
+    width: 90%;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    height: 60px;
+}
+.btn-save-info-p,.cont-info-people div [for="info-image"]{
+    height: 60px;
+    font-size: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
