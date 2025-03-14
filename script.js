@@ -348,8 +348,109 @@ btnAddPeople.onclick = function(){
     }
 }
 
+// get data about people
+localStorage.dataPeople;
+let arrDataPeople;//will go to localStorage
+let DataPeopleOBJ={};// will go to arrDataPeople
+// check data
+if(localStorage.dataPeople != null){
+    arrDataPeople =  JSON.parse(localStorage.dataPeople)
+}else{
+    arrDataPeople = []
+}
+//
+const namePeople = document.getElementById('info-people-name')
+const SDPInfo = document.getElementById('SDP-info')
+const describePeople = document.getElementById('desc-info-ppl')
+const infoImage = document.getElementById('info-image')
+const btnSaveDataPeople = document.querySelector('.btn-save-info-p')
 
+const spanNamePeople = document.getElementById('span-name-people')
+const spanSmDesPeople = document.getElementById('span-smDes-people')
+const textInfoSpan = document.querySelector('.text-info-span')
 
+// make photo string
+infoImage.onchange = function(){
+    const flie =  infoImage.files[0]
+    if(flie){
+        let imageReader = new FileReader();
+        imageReader.onload = function(imageData){
+            let imageString = imageData.target.result;
+            DataPeopleOBJ.dataImgOBJ = imageString;
+        }
+        imageReader.readAsDataURL(flie)
+    }
+}
+//Save BTN
+btnSaveDataPeople.onclick = function(){
+    if(namePeople.value != '' && describePeople.value != '' && SDPInfo.value != ''){
+        let newPerson = {
+            name: namePeople.value.trim(),
+            smallDescribe: SDPInfo.value.trim(),
+            description: describePeople.value.trim(),
+            dataImgOBJ: DataPeopleOBJ.dataImgOBJ || ''
+        };
+        arrDataPeople.push(newPerson);
+        localStorage.dataPeople = JSON.stringify(arrDataPeople)
+
+        //clear inputs
+        namePeople.value = ''
+        describePeople.value = ''
+        SDPInfo.value = ''
+        spanNamePeople.style.display = 'none'
+        spanSmDesPeople.style.display = 'none'
+        textInfoSpan.style.display = 'none'
+
+        //leave
+        if(alertInfpPeople.style.display != 'none' || alertInfpPeople.style.display != ''){
+            alertInfpPeople.style.display = 'none';
+            alertInfpPeople.style.transform = 'translateX(-100%)';
+            alertPeople.style.display = 'block';
+            setTimeout(() => alertPeople.style.transform = 'translateX(0)', 50);
+        }
+        showPeople()
+
+    }else if(namePeople.value == '' || describePeople.value == '' || SDPInfo.value == ''){
+        if(namePeople.value == ''){
+            spanNamePeople.style.display = 'block'
+            spanSmDesPeople.style.display = 'none'
+            textInfoSpan.style.display = 'none'
+        }else if(SDPInfo.value == ''){
+            spanSmDesPeople.style.display = 'block'
+            spanNamePeople.style.display = 'none'
+            textInfoSpan.style.display = 'none'
+        }else if(describePeople.value == ''){
+            textInfoSpan.style.display = 'block'
+            spanSmDesPeople.style.display = 'none'
+            spanNamePeople.style.display = 'none'
+        }
+    }
+}
+//function show people
+const containerPeople = document.querySelector('.cont-img')
+function showPeople(){
+    containerPeople.innerHTML = ''
+    for(let i = 0; i < arrDataPeople.length; i++){
+        if(arrDataPeople[i].dataImgOBJ != ''){
+            containerPeople.innerHTML += `
+            <a href="#" class="box-people">
+                <div class="img-container"><img src="${arrDataPeople[i].dataImgOBJ}" alt="photo"></div>
+                <h3>${arrDataPeople[i].name}</h3>
+                <p>${arrDataPeople[i].smallDescribe}</p>
+            </a>`
+        }else{
+            containerPeople.innerHTML += `
+            <a style="padding:10px" href="#" class="box-people">
+                <div class="img-container"><i class="fa-solid fa-user"></i></div>
+                <h3>${arrDataPeople[i].name}</h3>
+                <p>${arrDataPeople[i].smallDescribe}</p>
+            </a>`
+        }
+        
+    }
+    DataPeopleOBJ.dataImgOBJ = ''
+}
+showPeople()
 
 
 

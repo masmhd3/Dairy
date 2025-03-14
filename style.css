@@ -550,6 +550,7 @@ main .main-box p span{
     text-decoration: none;
     border:1px solid #222 ;
     box-shadow: 0 0 8px #000;
+    width: 230px;
 }
 .alert-people .container-people .cont-img .box-people:hover{
     transform: translateY(-5px);
@@ -568,14 +569,13 @@ main .main-box p span{
 }
 
 .img-container{
-    width: 200px;
     width: 100%;
+    height: 200px;
 }
 .img-container img{
     width: 100%;
-    height: 230px;
+    height: 100%;
     display: block;
-    margin: auto;
 }
 
 .alert-people .add-people{
@@ -593,8 +593,15 @@ main .main-box p span{
     background-color: #333;
     cursor: pointer;
 }
-
-
+.img-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.img-container i{
+    font-size: 150px;
+    color: #666;
+}
 
 /* information about  people */
 
@@ -622,8 +629,14 @@ main .main-box p span{
     margin-bottom: 15px;
 
 }
-.cont-info-people div span{
+.cont-info-people div span,.text-info-span{
     display: none;
+    color: red;
+    font-size: 14px;
+}
+.text-info-span{
+    text-align: left;
+    width: 90%;
 }
 .cont-info-people div .inp-info-p{
     background-color: #000;
@@ -631,6 +644,7 @@ main .main-box p span{
     font-size: 16px;
     padding: 10px ;
     border-radius: 3px;
+    letter-spacing: 1px;
 }
 
 .cont-info-people .textarea-info-p{
@@ -643,6 +657,8 @@ main .main-box p span{
     outline: none;
     resize: none;
     flex-grow:1 ;
+    letter-spacing: .8px;
+    line-height: 25px;
 }
 
 .cont-info-people div .info-image,.cont-info-people .text-info-span{
@@ -734,11 +750,69 @@ main .main-box p span{
     }
 
 }
+@media screen and (max-width:998px){
+    .alert-people .container-people .cont-img .box-people{
+        width:  280px;
+    }
+}
+@media screen and (max-width:920px){
+    .alert-people .container-people .cont-img .box-people{
+        width:  250px;
+    }
+}
+@media screen and (max-width:830px){
+    .alert-people .container-people .cont-img .box-people{
+        width:  220px;
+        flex-wrap: wrap;
+    }
+}
 @media screen and (max-width:750px){
     .alert-people .container-people .cont-img{
         grid-template-columns: repeat(2,1fr);
     }
+    .alert-people .container-people .cont-img .box-people{
+        width:  300px;
+        flex-wrap: wrap;
+    }
 }
+@media screen and (max-width:670px){
+    .alert-people .container-people .cont-img .box-people{
+        width:  250px;
+        flex-wrap: wrap;
+    }
+}
+@media screen and (max-width:560px){
+    .alert-people .container-people .cont-img .box-people{
+        width:  220px;
+        flex-wrap: wrap;
+    }
+}
+@media screen and (max-width:500px){
+    .alert-people .container-people .cont-img .box-people{
+        width:  180px;
+    }
+}
+@media screen and (max-width:440px){
+    .alert-people .container-people .cont-img .box-people{
+        width:  165px;
+    }
+}
+@media screen and (max-width:406px){
+    .alert-people .container-people .cont-img .box-people{
+        width:  155px;
+    }
+}
+@media screen and (max-width:370px){
+    .alert-people .container-people .cont-img .box-people{
+        width:  145px;
+    }
+}
+@media screen and (max-width:360px){
+    .alert-people .container-people .cont-img .box-people{
+        width:  130px;
+    }
+}
+
 @media screen and (max-width:500px){
     main .main-box i{
         font-size: 100px;
@@ -750,7 +824,7 @@ main .main-box p span{
         font-size: 28px;
     }
     .alert-people .container-people .cont-img{
-        grid-template-columns: repeat(1,1fr);
+        grid-template-columns: repeat(2,1fr);
         padding: 15px;
     }
     .alert-people .container-people h2{
@@ -762,7 +836,7 @@ main .main-box p span{
         grid-template-columns: repeat(1,1fr);
     }
     .alert-people .container-people .cont-img{
-        grid-template-columns: repeat(1,1fr);
+        grid-template-columns: repeat(2,1fr);
         padding: 8px;
     }
 }
