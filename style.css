@@ -714,13 +714,76 @@ main .main-box p span{
 
 
 
+/* alert read people  */
+.read-people{
+    z-index: 96;
+    background-color: #111;
+    transform: translateX(-100%);
+    display: none;
+}
+.read-people .con-read-people{
+    max-width: 1024px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 30px 15px;
+    gap: 20px;
+    position: relative;
+}
+.read-people .con-read-people h2{
+    font-size: 35px;
+    color: #888;
+    letter-spacing: .7px;
+    text-shadow: 0 0 10px #000;
+}
+.read-people .con-read-people p{
+    color: #a7a7a7;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 5px #000;
+    line-height: 150%;
+}
 
 
-
-
-
-
-
+#btnAListRP{
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    font-size: 25px;
+    padding: 10px;
+}
+#btnAListRP:hover{
+    color: #999;
+    cursor: pointer;
+}
+#btnAListRP:active{
+    scale: 2;
+}
+.listBTNsRP{
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    background-color: #222;
+    padding: 10px 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    opacity: 0;
+    display: none;
+}
+.listBTNsRP button{
+    background-color: #111;
+    width: 300px;
+    
+}
+.listBTNsRP button:hover{
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    background-color: #000;
+}
 
 
 

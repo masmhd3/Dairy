@@ -370,17 +370,26 @@ const spanSmDesPeople = document.getElementById('span-smDes-people')
 const textInfoSpan = document.querySelector('.text-info-span')
 
 // make photo string
-infoImage.onchange = function(){
-    const flie =  infoImage.files[0]
-    if(flie){
-        let imageReader = new FileReader();
-        imageReader.onload = function(imageData){
+infoImage.onchange = function() {
+    const file = infoImage.files[0];
+
+    if (file) {
+        if (file.size > 350 * 1024) { // 500KB
+            alert(`⚠️ حجم الصورة يجب أن يكون أقل من 500KB\nImage size must be less than 500KB.\n\n📏 حجم الصورة التي أدخلتها: ${(file.size / 1024).toFixed(2)} KB\n📏 The image size you added is: ${(file.size / 1024).toFixed(2)} KB`);
+            infoImage.value = ""; // مسح الاختيار
+            return;
+        }else{
+            let imageReader = new FileReader();
+            imageReader.onload = function(imageData) {
             let imageString = imageData.target.result;
             DataPeopleOBJ.dataImgOBJ = imageString;
+        };
+        imageReader.readAsDataURL(file);
         }
-        imageReader.readAsDataURL(flie)
     }
-}
+};
+
+
 //Save BTN
 btnSaveDataPeople.onclick = function(){
     if(namePeople.value != '' && describePeople.value != '' && SDPInfo.value != ''){
@@ -433,14 +442,14 @@ function showPeople(){
     for(let i = 0; i < arrDataPeople.length; i++){
         if(arrDataPeople[i].dataImgOBJ != ''){
             containerPeople.innerHTML += `
-            <a href="#" class="box-people">
+            <a id="${i}" onclick ="fufufu(id)" href="#" class="box-people">
                 <div class="img-container"><img src="${arrDataPeople[i].dataImgOBJ}" alt="photo"></div>
                 <h3>${arrDataPeople[i].name}</h3>
                 <p>${arrDataPeople[i].smallDescribe}</p>
             </a>`
         }else{
             containerPeople.innerHTML += `
-            <a style="padding:10px" href="#" class="box-people">
+            <a id="${i}" onclick ="fufufu(id)" style="padding:10px" href="#" class="box-people">
                 <div class="img-container"><i class="fa-solid fa-user"></i></div>
                 <h3>${arrDataPeople[i].name}</h3>
                 <p>${arrDataPeople[i].smallDescribe}</p>
@@ -451,6 +460,42 @@ function showPeople(){
     DataPeopleOBJ.dataImgOBJ = ''
 }
 showPeople()
+
+let cardsPeoples = document.querySelectorAll('.box-people')
+let readPeoplepage = document.querySelector('.read-people')
+let readPeopleH2 = document.querySelector('.read-people h2')
+let readPeoplep = document.querySelector('.read-people p')
+function fufufu(id){
+    if(readPeoplepage.style.display == 'none' || readPeoplepage.style.display == ''){
+        readPeoplepage.style.display = 'block'
+        setTimeout(() => readPeoplepage.style.transform = 'translate(0)', 50);
+        alertPeople.style.display = 'none'
+        alertPeople.style.transform = 'translate(-100%)'
+    }
+    readPeopleH2.innerHTML = arrDataPeople[id].name
+    readPeoplep.innerHTML = arrDataPeople[id].description
+    
+}
+
+// list in read people
+const btnRPL = document.getElementById('btnAListRP');
+const listRP = document.querySelector('.listBTNsRP');
+btnRPL.onclick  = function(){
+    if(listRP.style.display == 'none' || listRP.style.display == ''){
+        listRP.style.display = 'flex';
+        setTimeout(() => listRP.style.opacity = '1', 60);
+        btnRPL.classList.add('fa-x')
+    }else{
+        listRP.style.display = 'none';
+        setTimeout(() => listRP.style.opacity = '0', 60);
+        btnRPL.classList.remove('fa-x')
+    }
+}
+
+
+
+
+
 
 
 
@@ -494,6 +539,12 @@ btnHomePage.onclick = function(){
         dairyBtnNav.click()
         main.style.display = 'grid'
     }
+    else if(readPeoplepage.style.display != 'none' && readPeoplepage.style.display != ''){
+        setTimeout(() => readPeoplepage.style.transform = 'translateX(-100%)', 50);
+        readPeoplepage.style.display = 'none'
+        dairyBtnNav.click()
+        main.style.display = 'grid'
+    }
 
 
 
@@ -512,24 +563,3 @@ btnHomePage.onclick = function(){
 
 
 
-
-
-/*let imageInput = document.getElementById('filee')
-let preview = document.getElementById('iimmg')
-
-imageInput.onchange = function(){
-    const file = imageInput.files[0]
-    console.log(file)
-    if(file){
-        const reader = new FileReader()
-        reader.onload = function(event){
-            const base64Image = event.target.result
-            console.log(base64Image)
-            localStorage.setItem('imgPersons', base64Image);
-            preview.src = base64Image;
-        }
-        reader.readAsDataURL(file);
-    }
-}
-
-    */ 
