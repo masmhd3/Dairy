@@ -391,8 +391,9 @@ infoImage.onchange = function() {
 
 
 //Save BTN
+let valBTNSaveP = 'save';
 btnSaveDataPeople.onclick = function(){
-    if(namePeople.value != '' && describePeople.value != '' && SDPInfo.value != ''){
+    if(namePeople.value != '' && describePeople.value != '' && SDPInfo.value != ''&& valBTNSaveP=='save'){
         let newPerson = {
             name: namePeople.value.trim(),
             smallDescribe: SDPInfo.value.trim(),
@@ -442,14 +443,16 @@ function showPeople(){
     for(let i = 0; i < arrDataPeople.length; i++){
         if(arrDataPeople[i].dataImgOBJ != ''){
             containerPeople.innerHTML += `
-            <a id="${i}" onclick ="fufufu(id)" href="#" class="box-people">
-                <div class="img-container"><img src="${arrDataPeople[i].dataImgOBJ}" alt="photo"></div>
+            <a id="${i}" onclick ="fufufu(id);deleteCardPeople(id);delImgCP(id);updateCardPeople(id)"
+                href="#" class="box-people">
+                <div class="img-container"><img id="imimd" src="${arrDataPeople[i].dataImgOBJ}" alt="photo"></div>
                 <h3>${arrDataPeople[i].name}</h3>
                 <p>${arrDataPeople[i].smallDescribe}</p>
             </a>`
         }else{
             containerPeople.innerHTML += `
-            <a id="${i}" onclick ="fufufu(id)" style="padding:10px" href="#" class="box-people">
+            <a id="${i}" onclick ="fufufu(id);deleteCardPeople(id);updateCardPeople(id)"
+                 style="padding:10px" href="#" class="box-people">
                 <div class="img-container"><i class="fa-solid fa-user"></i></div>
                 <h3>${arrDataPeople[i].name}</h3>
                 <p>${arrDataPeople[i].smallDescribe}</p>
@@ -492,6 +495,41 @@ btnRPL.onclick  = function(){
     }
 }
 
+// leave read people
+// btns
+let leaveLRP = document.getElementById('leave-LRP');
+let deleteLRP = document.getElementById('delete-LRP');
+let delImgLRP = document.getElementById('delImg-LRP');
+let updateLRP = document.getElementById('update-LRP');
+
+// leave page
+leaveLRP.onclick = function(){
+    if(readPeoplepage.style.display != 'none' || readPeoplepage.style.display != ''){
+        readPeoplepage.style.display = 'none'
+        readPeoplepage.style.transform = 'translate(-100%)', 50;
+        alertPeople.style.display = 'block'
+        setTimeout(() => alertPeople.style.transform = 'translate(0)', 50);
+        btnRPL.click()
+    }
+}
+// delete card
+function deleteCardPeople(id){
+    deleteLRP.onclick = function(){
+        arrDataPeople.splice(id,1)
+        localStorage.dataPeople = JSON.stringify(arrDataPeople)
+        showPeople()
+        leaveLRP.click()
+    }
+}
+function delImgCP(id){
+    delImgLRP.onclick = function(){
+        arrDataPeople[id].dataImgOBJ = ''
+        localStorage.dataPeople = JSON.stringify(arrDataPeople)
+        showPeople()
+        leaveLRP.click()
+    }
+}
+// function update card of people
 
 
 
