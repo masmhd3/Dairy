@@ -7,17 +7,19 @@ let list = document.getElementById('list');//list
 
 btnNav.addEventListener('click',function(){
     // list
-    if (list.style.display == 'none' || list.style.display === ''){
+    if (list.style.display == 'none' || list.style.display == ''){
         list.style.display = 'block'
         setTimeout(() => list.style.transform = 'translateX(0)', 50);
     }else if(list.style.display == 'block'){
         list.style.display = 'none'
         setTimeout(() => list.style.transform = 'translateX(-100%)', 50);
     }
-    if(list.style.display == 'none' || list.style.display === ''){
+    if(list.style.display == 'none' || list.style.display == ''){
         btnNav.classList.remove('fa-x')
+        btnNav.classList.add('fa-bars')
     }else{
         btnNav.classList.add('fa-x')
+        btnNav.classList.remove('fa-bars')
     }
 }) 
 
@@ -94,6 +96,10 @@ btnCancelNewFont.onclick = function(){
     }else{
         btnNav.classList.add('fa-x')
     }
+    ArrbtnsNavDairy.forEach((ele) => {
+        ele.classList.remove('fa-x')
+        ele.classList.add('fa-bars')
+    })
     
 }
 btnAddNewFont.onclick = function(){
@@ -133,8 +139,10 @@ ArrbtnsNavDairy.forEach((ele) => {
         btnNav.click()
         if(btnNav.classList.contains('fa-x')){
             ele.classList.add('fa-x')
+            ele.classList.remove('fa-bars')
         }else{
             ele.classList.remove('fa-x')
+            ele.classList.add('fa-bars')
         }
     }
 })
@@ -529,7 +537,211 @@ function delImgCP(id){
         leaveLRP.click()
     }
 }
-// function update card of people
+
+
+
+///////////////// profile////////////////////////////
+const alertProfile = document.querySelector('.alert-profile')
+const boxProfile = document.querySelector('.main-box-profile')
+const infoProfile = document.querySelector('.info-profile')
+const sitProf = document.querySelector('.sit-prof')
+
+const inpNameProf = document.getElementById('name-pro');
+const inpAgeProf = document.getElementById('age-pro');
+const inpJobProf = document.getElementById('job-pro');
+const inpAdressProf = document.getElementById('adress-pro');
+const inpSkillsProf = document.getElementById('skills');
+const inpSmlDescription = document.getElementById('smDescription');
+const descritionUser = document.getElementById('text-pro-info');
+
+
+
+
+//
+boxProfile.onclick = function(){
+    if(alertProfile.style.display == 'none' || alertProfile.style.display == ''){
+        alertProfile.style.display = 'block'
+        setTimeout(() => alertProfile.style.transform = 'translateX(0)', 50);
+        main.style.display = 'none'
+    }
+}
+sitProf.onclick = function(){
+    if(infoProfile.style.display == 'none' || infoProfile.style.display == ''){
+        window.scrollTo({top:0, behavior:'smooth'})
+        infoProfile.style.display = 'block'
+        setTimeout(() => infoProfile.style.transform = 'translateX(0)', 50);
+        alertProfile.style.display = 'none'
+        alertProfile.style.transform = 'translateX(-100%)'
+
+        //put data
+        inpNameProf.value = OBJDataUser.name
+        inpAgeProf.value = OBJDataUser.age
+        inpJobProf.value = OBJDataUser.job
+        inpAdressProf.value = OBJDataUser.adress
+        inpSkillsProf.value = OBJDataUser.skills
+        inpSmlDescription.value = OBJDataUser.smallDescrition
+        descritionUser.value = OBJDataUser.description
+    }
+}
+
+
+// image
+localStorage.userPhoto;
+let varUserPhoto;
+if(localStorage.userPhoto != null){
+    varUserPhoto = localStorage.userPhoto
+}else{
+    varUserPhoto;
+}
+const userimg = document.querySelector('.userImage')
+const boxUserPhoto = document.querySelector('.img-user')
+const inpFileUser = document.getElementById('file-user')
+
+boxUserPhoto.onclick = function(){
+    if(userimg.style.display === 'none' || userimg.style.display === ''){
+        inpFileUser.click()
+        inpFileUser.onchange = function(){
+            const usrImg = inpFileUser.files[0];
+            if(usrImg){
+                if(usrImg.size > 500 * 1024){
+                    alert(`⚠️ حجم الصورة يجب أن يكون أقل من 500KB\nImage size must be less than 500KB.\n\n📏 حجم الصورة التي أدخلتها: ${(usrImg.size / 1024).toFixed(2)} KB\n📏 The image size you added is: ${(usrImg.size / 1024).toFixed(2)} KB`);
+                    infoImage.value = ""; 
+                    return;
+                }else{
+                    let imgReader = new FileReader()
+                    imgReader.onload = function(dataIMG){
+                        let StringPhoto = dataIMG.target.result;
+                        varUserPhoto = StringPhoto
+                        localStorage.userPhoto = varUserPhoto
+                        userimg.src = varUserPhoto
+                        showImageUser()
+                    }
+                    imgReader.readAsDataURL(usrImg)
+                }
+            }
+        }
+    }
+}
+
+// delete Img User
+document.querySelector('.delImgUser').onclick = function(){
+    document.getElementById('btnListUserImg').click()
+    inpFileUser.value = ''
+    varUserPhoto = ''
+    localStorage.userPhoto = varUserPhoto
+    userimg.style.display = 'none'
+    document.getElementById('plusIcon').style.display = 'block'
+    document.getElementById('btnListUserImg').style.display = 'none'
+    showImageUser()
+}
+//change img
+document.querySelector('.chanImgUser').onclick = function(){
+    document.getElementById('btnListUserImg').click()
+    inpFileUser.value = ''
+    userimg.style.display = 'none'
+    boxUserPhoto.click()
+    showImageUser()
+}
+
+
+
+// add plus or img
+function showImageUser(){
+    if(localStorage.userPhoto != ''){
+        userimg.src = varUserPhoto
+        userimg.style.display = 'block'
+        document.getElementById('plusIcon').style.display = 'none'
+        document.getElementById('btnListUserImg').style.display = 'block'
+    }else{
+        userimg.src = ''
+        userimg.style.display = 'none'
+        document.getElementById('plusIcon').style.display = 'block'
+        document.getElementById('btnListUserImg').style.display = 'none'
+    }
+
+}
+showImageUser()
+
+// list
+const listImgUser = document.querySelector('.list-img-user')
+    document.getElementById('btnListUserImg').onclick = function(){
+    if(listImgUser.style.display == 'none'||listImgUser.style.display == ''){
+        listImgUser.style.display = 'flex';
+        setTimeout(() =>listImgUser.style.transform = 'translateY(0)' , 50);
+        document.getElementById('btnListUserImg').classList.add('fa-x')
+    }
+    else if(listImgUser.style.display != 'none'||listImgUser.style.display != ''){
+        setTimeout(() =>listImgUser.style.transform = 'translateY(100%)' , 50);
+        document.getElementById('btnListUserImg').classList.remove('fa-x')
+        listImgUser.style.display = 'none'
+    }
+}
+
+
+
+
+
+
+
+
+
+localStorage.dataUser;
+let OBJDataUser
+if(localStorage.dataUser!= null){
+    OBJDataUser = JSON.parse(localStorage.dataUser)
+}else{
+    OBJDataUser = {};
+}
+
+
+const btnSaveProfile = document.getElementById('btn-profile');
+btnSaveProfile.onclick = function(){
+    OBJDataUser = {
+        name:inpNameProf.value.trim(),
+        age:inpAgeProf.value.trim()||'unknown',
+        job:inpJobProf.value.trim()||'unknown',
+        skills:inpSkillsProf.value.trim()||'unknown',
+        smallDescrition:inpSmlDescription.value.trim()||'unknown',
+        description:descritionUser.value.trim()||'unknown',
+        adress:inpAdressProf.value.trim()||'unknown',
+    }
+    localStorage.dataUser = JSON.stringify(OBJDataUser)
+    console.log(JSON.parse(localStorage.dataUser))
+
+
+
+    //leave
+    if(infoProfile.style.display != 'none' || infoProfile.style.display != ''){
+        infoProfile.style.display = 'none'
+        setTimeout(() => infoProfile.style.transform = 'translateX(-100%)', 50);
+        alertProfile.style.display = 'block'
+        setTimeout(() =>  alertProfile.style.transform = 'translateX(0)', 50);
+    }
+    // showDataProfile()
+    main.style.display= 'none'
+    showDataProfile()
+}
+
+function showDataProfile(){
+    document.querySelector('.name-prof').innerHTML= `user name <b>:</b> <span class="name-proff">${OBJDataUser.name}</span>`
+    document.querySelector('.adress-prof').innerHTML= `adress <b>:</b> ${OBJDataUser.adress}`
+    document.querySelector('.age-prof').innerHTML= `age <b>:</b> ${OBJDataUser.age} `
+    document.querySelector('.job-prof').innerHTML= `job <b>:</b> ${OBJDataUser.job}`
+    document.querySelector('.skills').innerHTML= `skills <b>:</b> ${OBJDataUser.skills}`
+    document.querySelector('.FJOEW').innerHTML= `${OBJDataUser.smallDescrition}`
+    document.querySelector('.whoIAM').innerHTML= `${OBJDataUser.description}`
+}
+showDataProfile()
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -583,6 +795,18 @@ btnHomePage.onclick = function(){
         dairyBtnNav.click()
         main.style.display = 'grid'
     }
+    else if(alertProfile.style.display != 'none' && alertProfile.style.display != ''){
+        setTimeout(() => alertProfile.style.transform = 'translateX(-100%)', 50);
+        alertProfile.style.display = 'none'
+        dairyBtnNav.click()
+        main.style.display = 'grid'
+    }
+    else if(infoProfile.style.display != 'none' && infoProfile.style.display != ''){
+        setTimeout(() => infoProfile.style.transform = 'translateX(-100%)', 50);
+        infoProfile.style.display = 'none'
+        dairyBtnNav.click()
+        main.style.display = 'grid'
+    }
 
 
 
@@ -592,6 +816,12 @@ btnHomePage.onclick = function(){
     if(alertWriteDairy.style.display == 'none' || alertWriteDairy.style.display == ''){
         spanInputDairy.style.display = 'none'
     }
+
+    //
+    ArrbtnsNavDairy.forEach((ele) => {
+        ele.classList.remove('fa-x')
+        ele.classList.add('fa-bars')
+    })
 }
 
 

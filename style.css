@@ -207,7 +207,7 @@ main .main-box{
     align-items: center;
     justify-content: space-between;
     gap: 30px;
-    padding: 10px;
+    padding: 10px 20px;
     color: gray;
     text-decoration: none;
     border-radius: 10px;
@@ -225,6 +225,7 @@ main .main-box h2{
     color: gray;
     text-transform: capitalize;
     text-align: center;
+    margin-bottom: 10px;
 }
 main .main-box p{
     color: gray;
@@ -788,10 +789,256 @@ main .main-box p span{
 
 
 
+/************************ profile ************************/
+.alert-profile{
+    background-color: #111;
+    z-index: 96;
+    transform: translateX(-100%);
+    display: none;
+}
+.title-prof{
+    font-size: 40px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.267);
+    padding: 15px 10px;
+}
+.alert-profile .imp-info-prof{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 10px 20px;
+    gap: 20px;
+    height: 80vh;
+    max-width: 1024px;
+    margin: auto;
+}
+.alert-profile .info-prof-t p{
+    color: rgba(255, 255, 255, 0.664);
+    text-transform: capitalize;
+    letter-spacing: .7px;
+    margin-bottom: 10px;
+}
+.alert-profile .info-prof-t h3{
+    margin-top: 30px;
+    color: rgba(255, 255, 255, 0.664);
+    margin-bottom: 10px;
+}
+.alert-profile .img-user{
+    border:1px solid #222;
+    height: 300px;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    cursor: pointer;
+    overflow: hidden;
+    margin:0 auto ;
+    position: relative;
+}
+.alert-profile .img-user:hover{
+    cursor: pointer;
+    box-shadow: 0 0 10px #000;
+}
+.alert-profile .img-user i{
+    font-size: 300px;
+    color: #444;
+}
+.alert-profile .img-user img{
+    width: 100%;
+    height: 100%;
+    display: none;
+    cursor: auto;
+}
+.alert-profile .img-user img:hover{
+    opacity: .8;
+}
+
+.alert-profile .me-profile{
+    padding: 10px 20px 30px 20px;
+}
+.container-profile .me-profile h2{
+    text-align: center;
+    color: rgba(255, 255, 255, 0.459);
+    margin-bottom: 15px;
+}
+.container-profile .me-profile p{
+    letter-spacing: 1.5px;
+    word-spacing: 1px;
+    line-height: 25px;
+    color: rgba(255, 255, 255, 0.527);
+    padding: 5px 20px;
+
+}
+.sit-prof{
+    padding: 10px 10px 30px 10px;
+    width: 100%;
+}
+.sit-prof button{
+    display: block;
+    background-color: #111;
+    border: 2px solid #333;
+    color: gray;
+    width: 90%;
+    margin: auto;
+    font-size: 25px;
+    text-transform: capitalize;
+    height: 60px;
+    cursor: pointer;
+}
+.sit-prof button:hover{
+    background-color: #333;
+    color: rgba(255, 255, 255, 0.63);
+    letter-spacing: 1px;
+}
+.sit-prof button:hover i{
+    color: rgba(255, 255, 255, 0.63);
+}
+.sit-prof button i{
+    color: gray;
+}
 
 
+/* <!-- alert add profile info --> */
+.info-profile{
+    background-color: #111;
+    z-index: 96;
+    transform: translateX(-100%);
+    display: none;
+}
+.pro-inputs{
+    padding: 10px;
+    max-width: 1024px;
+    margin: auto;
+}
+.pro-inputs h2{
+    text-align: center;
+    color: gray;
+    font-size: 35px;
+    padding: 10px;
+}
+.info-profile {
+    margin: 10px 0;
+}
+.info-profile input{
+    width: 100%;
+    background-color: #000;
+    margin: 5px 0;
+    font-size: 16px;
+    padding:12px 10px ;
+    border-radius: 8px;
+}
+.info-profile .raw1-info,.info-profile .raw2-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.info-profile .raw1-info input,.info-profile .raw2-info input{
+    width: 250px;
+    flex-grow: 1;
+}
+.info-profile #text-pro-info{
+    background-color: #000;
+    resize: none;
+    width: 100%;
+    border-radius: 8px;
+    height: 300px;
+    outline: none;
+    margin: 5px 0;
+    font-size: 16px;
+    padding:12px 10px ;
+    letter-spacing: 1px;
+    line-height: 130%;
+}
+.nav-pro {
+    height: 82px;
+    border-bottom: 2px solid #222;
+}
+.nav-pro nav{
+    height: 80px;
+    border: none;
+}
+.nav-pro nav .logo{
+    width: 75px;
+}
+.info-profile .btn-profile{
+    display: block;
+    padding: 30px;
+    background-color: #111;
+    width: 100%;
+    border: 2px solid #222;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+.info-profile .btn-profile i{
+    font-size: 25px;
+}
+.info-profile .btn-profile:hover{
+    background-color: #222;
+    letter-spacing: 2.5px;
+}
+.FJOEW{
+    line-height: 25px;  width: 550px;
+}
 
+/*  */
+#file-user{
+    display: none;
+}
+.list-img-user{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    transform: translateY(100%);
+    display: none;
+}
+.list-img-user button{
+    display: block;
+    width: 100%;
+    background-color: #111;
+    border: 2px solid #333;
+    height: 60px;
+    margin: 5px 0;
+    letter-spacing: 1px;
+    font-size: 18px;
+}
+.list-img-user .delImgUser i,.list-img-user .chanImgUser i{
+    font-size: 20px;
+    color: white;
+}
 
+.list-img-user button:hover{
+    background-color: #333;
+    letter-spacing: 2.5px;
+    cursor: pointer;
+}
+
+#btnListUserImg{
+    position: absolute;
+    font-size: 30px;
+    color: white;
+    top: 10px;
+    right: 20px;
+    padding: 10px 5px;
+    z-index: 999;
+}
+#btnListUserImg:hover{
+    color: rgba(255, 255, 255, 0.568);
+}
 
 
 
@@ -829,6 +1076,21 @@ main .main-box p span{
         flex-wrap: wrap;
     }
 }
+@media screen and (max-width:800px){
+    .alert-profile .imp-info-prof{
+        flex-direction: column;
+    }
+    .alert-profile .info-prof-t{
+        margin: auto;
+        max-width: 400px;
+    }
+    .alert-profile .img-user{
+        width: 400px;
+    }
+    .alert-profile .imp-info-prof{
+        height: auto;
+    }
+}
 @media screen and (max-width:750px){
     .alert-people .container-people .cont-img{
         grid-template-columns: repeat(2,1fr);
@@ -837,11 +1099,17 @@ main .main-box p span{
         width:  300px;
         flex-wrap: wrap;
     }
+    .FJOEW{
+        width: 500px;
+    }
 }
 @media screen and (max-width:670px){
     .alert-people .container-people .cont-img .box-people{
         width:  250px;
         flex-wrap: wrap;
+    }
+    .FJOEW{
+        width: 450px;
     }
 }
 @media screen and (max-width:560px){
@@ -850,9 +1118,28 @@ main .main-box p span{
         flex-wrap: wrap;
     }
 }
+@media screen and (max-width:520px){
+    .FJOEW{
+        width: 400px;
+    }
+}
 @media screen and (max-width:500px){
     .alert-people .container-people .cont-img .box-people{
         width:  180px;
+    }
+}
+@media screen and (max-width:450px){
+    .alert-profile .img-user{
+        width: 300px;
+    }
+    .pro-inputs h2{
+        font-size: 28px;
+    }
+    .FJOEW{
+        width: 350px;
+    }
+    .alert-profile .imp-info-prof{
+        padding: 10px;
     }
 }
 @media screen and (max-width:440px){
@@ -864,6 +1151,12 @@ main .main-box p span{
     .alert-people .container-people .cont-img .box-people{
         width:  155px;
     }
+    .pro-inputs h2{
+        font-size: 24px;
+    }
+    .FJOEW{
+        width: 300px;
+    }
 }
 @media screen and (max-width:370px){
     .alert-people .container-people .cont-img .box-people{
@@ -874,8 +1167,18 @@ main .main-box p span{
     .alert-people .container-people .cont-img .box-people{
         width:  130px;
     }
+    .alert-profile .img-user{
+        width: 270px;
+    }
+    .FJOEW{
+        width: 270px;
+    }
 }
-
+@media screen and (max-width:340px){
+    .FJOEW{
+        width: 240px;
+    }
+}
 @media screen and (max-width:500px){
     main .main-box i{
         font-size: 100px;
@@ -893,6 +1196,9 @@ main .main-box p span{
     .alert-people .container-people h2{
         font-size: 20px;
     }
+    .alert-profile .me-profile{
+        padding: 10px 8px;
+    }
 }
 @media screen and (max-width:480px){
     main{
@@ -901,5 +1207,10 @@ main .main-box p span{
     .alert-people .container-people .cont-img{
         grid-template-columns: repeat(2,1fr);
         padding: 8px;
+    }
+}
+@media screen and (max-width:330px){
+    .alert-profile .img-user{
+        width: 250px;
     }
 }
