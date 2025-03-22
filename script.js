@@ -83,7 +83,7 @@ let dairyBtnNav = document.getElementById('dairy-btn-nav');//
 btnAddFant.onclick = function(){
     alertNewFont.style.display = 'flex';
     setTimeout(() => alertNewFont.style.transform = 'translateX(0)', 50);
-    window.scrollTo({ top: document.body.scrollHeight / 2 , behavior: 'smooth' });
+    window.scrollTo({ top: 'center' , behavior: 'smooth' });
     btnNav.click()
     inpAlertNewFont.focus()
 }
@@ -109,6 +109,11 @@ btnAddNewFont.onclick = function(){
     btnCancelNewFont.click()
 }
 
+///////////////////////// make all settings defult /////////////////
+document.querySelector('.list-default').onclick = function(){
+    localStorage.font = 'sans-serif'
+    document.body.style.fontFamily = localStorage.font
+}
 
 
 // Dairy
@@ -556,7 +561,6 @@ const descritionUser = document.getElementById('text-pro-info');
 
 
 
-
 //
 boxProfile.onclick = function(){
     if(alertProfile.style.display == 'none' || alertProfile.style.display == ''){
@@ -574,13 +578,18 @@ sitProf.onclick = function(){
         alertProfile.style.transform = 'translateX(-100%)'
 
         //put data
-        inpNameProf.value = OBJDataUser.name
-        inpAgeProf.value = OBJDataUser.age
-        inpJobProf.value = OBJDataUser.job
-        inpAdressProf.value = OBJDataUser.adress
-        inpSkillsProf.value = OBJDataUser.skills
-        inpSmlDescription.value = OBJDataUser.smallDescrition
-        descritionUser.value = OBJDataUser.description
+        if(localStorage.dataUser != null){        
+            inpNameProf.value = OBJDataUser.name?? ''
+            inpAgeProf.value = OBJDataUser.age?? ''
+            inpJobProf.value = OBJDataUser.job?? ''
+            inpAdressProf.value = OBJDataUser.adress?? ''
+            inpSkillsProf.value = OBJDataUser.skills?? ''
+            inpSmlDescription.value = OBJDataUser.smallDescrition?? ''
+            descritionUser.value = OBJDataUser.description?? ''
+            inpJobProf.value = OBJDataUser.job ? OBJDataUser.job : '';
+            inpJobProf.value = OBJDataUser.job ? OBJDataUser.job : '';
+            inpJobProf.value = OBJDataUser.job ?? '';
+        }
     }
 }
 
@@ -598,6 +607,7 @@ const boxUserPhoto = document.querySelector('.img-user')
 const inpFileUser = document.getElementById('file-user')
 
 boxUserPhoto.onclick = function(){
+
     if(userimg.style.display === 'none' || userimg.style.display === ''){
         inpFileUser.click()
         inpFileUser.onchange = function(){
@@ -614,31 +624,41 @@ boxUserPhoto.onclick = function(){
                         varUserPhoto = StringPhoto
                         localStorage.userPhoto = varUserPhoto
                         userimg.src = varUserPhoto
+                        document.querySelector('.userImgList').src = varUserPhoto
                         showImageUser()
+                        // getLocalStorageSize()
                     }
                     imgReader.readAsDataURL(usrImg)
                 }
             }
         }
+    }else{
+
     }
 }
 
 // delete Img User
 document.querySelector('.delImgUser').onclick = function(){
+
     document.getElementById('btnListUserImg').click()
-    inpFileUser.value = ''
-    varUserPhoto = ''
-    localStorage.userPhoto = varUserPhoto
     userimg.style.display = 'none'
     document.getElementById('plusIcon').style.display = 'block'
+    document.querySelector('.userImgList').style.display = 'none'
+    document.getElementById('list-icon-profile').style.display = 'block'
+    inpFileUser.value = ''
+    varUserPhoto = ''
+    localStorage.userPhoto = null
     document.getElementById('btnListUserImg').style.display = 'none'
+    localStorage.removeItem('userPhoto');
     showImageUser()
+    
 }
 //change img
 document.querySelector('.chanImgUser').onclick = function(){
     document.getElementById('btnListUserImg').click()
     inpFileUser.value = ''
     userimg.style.display = 'none'
+    document.querySelector('.userImgList').style.display = 'none'
     boxUserPhoto.click()
     showImageUser()
 }
@@ -647,20 +667,40 @@ document.querySelector('.chanImgUser').onclick = function(){
 
 // add plus or img
 function showImageUser(){
-    if(localStorage.userPhoto != ''){
+    if(localStorage.userPhoto != null ){
         userimg.src = varUserPhoto
+        document.querySelector('.userImgList').src = varUserPhoto
         userimg.style.display = 'block'
+        document.querySelector('.userImgList').style.display = 'block'
         document.getElementById('plusIcon').style.display = 'none'
+        document.getElementById('list-icon-profile').style.display = 'none'
         document.getElementById('btnListUserImg').style.display = 'block'
     }else{
-        userimg.src = ''
-        userimg.style.display = 'none'
-        document.getElementById('plusIcon').style.display = 'block'
-        document.getElementById('btnListUserImg').style.display = 'none'
+        userimg.src = ''                                        
+        document.querySelector('.userImgList').src = ''                                     
+        userimg.style.display = 'none'                                      
+        document.querySelector('.userImgList').style.display = 'none'                                       
+        document.getElementById('plusIcon').style.display = 'block'                                     
+        document.getElementById('list-icon-profile').style.display = 'block'                                        
+        document.getElementById('btnListUserImg').style.display = 'none'                                        
     }
-
 }
 showImageUser()
+
+
+function getLocalStorageSize() {
+    let totalSize = 0;
+    for (let key in localStorage) {
+        if (localStorage.hasOwnProperty(key)) {
+            totalSize += localStorage.getItem(key).length;
+        }
+    }
+    if((totalSize / 1024 / 1024).toFixed(3) > 4){
+        alert(`you have used ${(totalSize / 1024 / 1024).toFixed(3)} MB of localStorage.\n you can't add photos again`) 
+    }
+}
+
+
 
 // list
 const listImgUser = document.querySelector('.list-img-user')
@@ -679,12 +719,6 @@ const listImgUser = document.querySelector('.list-img-user')
 
 
 
-
-
-
-
-
-
 localStorage.dataUser;
 let OBJDataUser
 if(localStorage.dataUser!= null){
@@ -692,23 +726,19 @@ if(localStorage.dataUser!= null){
 }else{
     OBJDataUser = {};
 }
-
-
 const btnSaveProfile = document.getElementById('btn-profile');
 btnSaveProfile.onclick = function(){
     OBJDataUser = {
         name:inpNameProf.value.trim(),
-        age:inpAgeProf.value.trim()||'unknown',
-        job:inpJobProf.value.trim()||'unknown',
-        skills:inpSkillsProf.value.trim()||'unknown',
-        smallDescrition:inpSmlDescription.value.trim()||'unknown',
-        description:descritionUser.value.trim()||'unknown',
-        adress:inpAdressProf.value.trim()||'unknown',
+        age:inpAgeProf.value.trim()||'',
+        job:inpJobProf.value.trim()||'',
+        skills:inpSkillsProf.value.trim()||'',
+        smallDescrition:inpSmlDescription.value.trim()||'',
+        description:descritionUser.value.trim()||'',
+        adress:inpAdressProf.value.trim()||'',
     }
     localStorage.dataUser = JSON.stringify(OBJDataUser)
     console.log(JSON.parse(localStorage.dataUser))
-
-
 
     //leave
     if(infoProfile.style.display != 'none' || infoProfile.style.display != ''){
@@ -716,6 +746,7 @@ btnSaveProfile.onclick = function(){
         setTimeout(() => infoProfile.style.transform = 'translateX(-100%)', 50);
         alertProfile.style.display = 'block'
         setTimeout(() =>  alertProfile.style.transform = 'translateX(0)', 50);
+        window.scrollTo({top:0,behavior:"smooth"})
     }
     // showDataProfile()
     main.style.display= 'none'
@@ -723,26 +754,18 @@ btnSaveProfile.onclick = function(){
 }
 
 function showDataProfile(){
-    document.querySelector('.name-prof').innerHTML= `user name <b>:</b> <span class="name-proff">${OBJDataUser.name}</span>`
-    document.querySelector('.adress-prof').innerHTML= `adress <b>:</b> ${OBJDataUser.adress}`
-    document.querySelector('.age-prof').innerHTML= `age <b>:</b> ${OBJDataUser.age} `
-    document.querySelector('.job-prof').innerHTML= `job <b>:</b> ${OBJDataUser.job}`
-    document.querySelector('.skills').innerHTML= `skills <b>:</b> ${OBJDataUser.skills}`
-    document.querySelector('.FJOEW').innerHTML= `${OBJDataUser.smallDescrition}`
-    document.querySelector('.whoIAM').innerHTML= `${OBJDataUser.description}`
+    if(localStorage.dataUser != null){
+        document.querySelector('.name-prof').innerHTML= `user name <b>:</b> ${OBJDataUser.name}`
+        document.querySelector('.adress-prof').innerHTML= `adress <b>:</b> ${OBJDataUser.adress}`
+        document.querySelector('.age-prof').innerHTML= `age <b>:</b> ${OBJDataUser.age} `
+        document.querySelector('.job-prof').innerHTML= `job <b>:</b> ${OBJDataUser.job}`
+        document.querySelector('.skills').innerHTML= `skills <b>:</b> ${OBJDataUser.skills}`
+        document.querySelector('.FJOEW').innerHTML= `${OBJDataUser.smallDescrition}`
+        document.querySelector('.whoIAM').innerHTML= `${OBJDataUser.description}`
+        document.querySelector('.list-user-name').innerHTML= `${OBJDataUser.name}`
+    }
 }
 showDataProfile()
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -808,10 +831,6 @@ btnHomePage.onclick = function(){
         main.style.display = 'grid'
     }
 
-
-
-
-
     // condition
     if(alertWriteDairy.style.display == 'none' || alertWriteDairy.style.display == ''){
         spanInputDairy.style.display = 'none'
@@ -824,10 +843,4 @@ btnHomePage.onclick = function(){
     })
 }
 
-
-
-
-
-
-
-
+    //////////////////////////////////////////////////////////////////////////////////
